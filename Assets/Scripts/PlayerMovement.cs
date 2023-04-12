@@ -6,11 +6,11 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private CapsuleCollider2D coll;
-    private float moveSpeed = 7f;
-    private float jumpStrength = 10f;
+    [SerializeField] private float moveSpeed = 7f;
+    [SerializeField] private float jumpStrength = 10f;
 
     private bool isDashing = false;
-    private float dashSpeed = 11f;
+    [SerializeField] private float dashSpeed = 11f;
     private float dashStop = 0.4f;
     private float currentDashStop;
 
@@ -70,7 +70,6 @@ public class PlayerMovement : MonoBehaviour
 
         WallSlide(dirX);
         WallJump(dirX);
-        Debug.Log(currentDashStop);
     }
 
     private void WallSlide(float horizontal)
@@ -87,12 +86,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallJump(float horizontal)
     {
-        float wallJumpDirection = -1 * Mathf.Sign(horizontal);
         wallJumpStrength = new Vector2(currentMoveSpeed, jumpStrength);
         if(Input.GetButtonDown("Jump") && isWallSliding)
         {
             isWallJumping = true;
-            rb.velocity = new Vector2(wallJumpStrength.x, wallJumpStrength.y);
+            float wallJumpDirection = -1 * Mathf.Sign(horizontal);
+            rb.velocity = new Vector2(wallJumpDirection * wallJumpStrength.x, wallJumpStrength.y);
             Invoke(nameof(StopWallJumping), wallJumpDuration);
         } 
     }
