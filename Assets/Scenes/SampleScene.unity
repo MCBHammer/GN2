@@ -562,6 +562,7 @@ GameObject:
   - component: {fileID: 1113366276}
   - component: {fileID: 1113366277}
   - component: {fileID: 1113366278}
+  - component: {fileID: 1113366279}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -637,6 +638,20 @@ MonoBehaviour:
   jumpableGround:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1113366279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113366274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491656d8a2e7b764e9e9c39202d121d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallMultiplier: 2
+  lowJumpMultiplier: 2
 --- !u!1 &1788284704
 GameObject:
   m_ObjectHideFlags: 0

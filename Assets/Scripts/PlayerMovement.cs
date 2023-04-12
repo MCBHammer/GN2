@@ -6,30 +6,117 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private CapsuleCollider2D coll;
+    private float moveSpeed = 7f;
+    private float jumpStrength = 10f;
+
+    private bool isDashing = false;
+    private float dashSpeed = 11f;
+    private float dashStop = 0.4f;
+    private float currentDashStop;
+
+    private float currentMoveSpeed;
+
+    private bool isWallSliding = false;
+    private float wallSlidingSpeed = 2f;
+    private Vector2 wallJumpStrength;
+    private bool isWallJumping = false;
+    private float wallJumpDuration = 0.25f;
 
     [SerializeField] private LayerMask jumpableGround;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<CapsuleCollider2D>();
+        currentMoveSpeed = moveSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
         float dirX = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
-
+        if (!isWallJumping)
+        {
+            rb.velocity = new Vector2(dirX * currentMoveSpeed, rb.velocity.y);
+        }
+        
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            rb.velocity = new Vector3(0, 10, 0);
+            rb.velocity = new Vector3(0, jumpStrength, 0);
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && IsGrounded())
+        {
+            isDashing = true;
+            currentMoveSpeed = dashSpeed;
+            currentDashStop = dashStop;
+        }
+
+        if(isDashing && rb.velocity.x == 0)
+        {
+            currentDashStop -= Time.deltaTime;
+        } else
+        {
+            currentDashStop = dashStop;
+        }
+
+        if (currentDashStop <= 0)
+        {
+            isDashing = false;
+            currentMoveSpeed = moveSpeed;
+            currentDashStop = dashStop;
+        }
+
+        WallSlide(dirX);
+        WallJump(dirX);
+        Debug.Log(currentDashStop);
+    }
+
+    private void WallSlide(float horizontal)
+    {
+        if(IsWalled() && !IsGrounded() && horizontal != 0f)
+        {
+            isWallSliding = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+        } else
+        {
+            isWallSliding = false;
+        }
+    }
+
+    private void WallJump(float horizontal)
+    {
+        float wallJumpDirection = -1 * Mathf.Sign(horizontal);
+        wallJumpStrength = new Vector2(currentMoveSpeed, jumpStrength);
+        if(Input.GetButtonDown("Jump") && isWallSliding)
+        {
+            isWallJumping = true;
+            rb.velocity = new Vector2(wallJumpStrength.x, wallJumpStrength.y);
+            Invoke(nameof(StopWallJumping), wallJumpDuration);
+        } 
+    }
+
+    private void StopWallJumping()
+    {
+        isWallJumping = false;
     }
 
     private bool IsGrounded()
     {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0, Vector2.down, .1f, jumpableGround);
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size * 0.5f, 0, Vector2.down, .8f, jumpableGround);
+    }
+
+    private bool IsWalled()
+    {
+        bool left = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size * 0.5f, 0, Vector2.left, .3f, jumpableGround);
+        bool right = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size * 0.5f, 0, Vector2.right, .3f, jumpableGround);
+        if(left || right)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
     }
 }
