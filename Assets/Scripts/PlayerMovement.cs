@@ -70,6 +70,11 @@ public class PlayerMovement : MonoBehaviour
             currentDashStop = dashStop;
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         WallSlide(dirX);
         WallJump(dirX);
     }
