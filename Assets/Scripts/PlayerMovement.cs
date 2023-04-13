@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsStomping()
     {
-        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0, Vector2.down, .2f, stompableObjects);
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size * 0.5f, 0, Vector2.down, .8f, stompableObjects);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
