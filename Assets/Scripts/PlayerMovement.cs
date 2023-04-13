@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private CapsuleCollider2D coll;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpStrength = 10f;
+    [SerializeField] private float bounceStrength = 6f;
 
     private bool isDashing = false;
     [SerializeField] private float dashSpeed = 11f;
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpDuration = 0.25f;
 
     [SerializeField] private LayerMask jumpableGround;
+    [SerializeField] private LayerMask stompableObjects; 
 
     // Start is called before the first frame update
     void Awake()
@@ -116,6 +118,28 @@ public class PlayerMovement : MonoBehaviour
         } else
         {
             return false;
+        }
+    }
+
+    private bool IsStomping()
+    {
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0, Vector2.down, .2f, stompableObjects);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy") && this.gameObject.TryGetComponent(out PlayerData player))
+        {
+            if (IsStomping())
+            {
+                Destroy(other.transform.parent.gameObject);
+                rb.velocity = new Vector3(0, bounceStrength, 0);
+            } else
+            {
+                EnemyDamage enemyDamage = other.gameObject.GetComponent<EnemyDamage>();
+                int damage = enemyDamage.Damage;
+                player.healthChange(damage);
+            }
         }
     }
 }
