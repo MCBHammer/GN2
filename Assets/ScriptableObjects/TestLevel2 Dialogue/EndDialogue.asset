@@ -18,7 +18,7 @@ MonoBehaviour:
     characterSprite: {fileID: 21300000, guid: 8f84591aac0f78548a9ca621b7ed2065, type: 3}
   - speakerName: Ramp
     dialogue: Of course I'll have fun getting out! I love me a good climb!
-    characterSprite: {fileID: 0}
+    characterSprite: {fileID: 21300000, guid: 91c7737d66823a543a3a6fd5133c0a5c, type: 3}
   - speakerName: Johnny
     dialogue: Where do you get that optimism from?
     characterSprite: {fileID: 21300000, guid: 8f84591aac0f78548a9ca621b7ed2065, type: 3}
