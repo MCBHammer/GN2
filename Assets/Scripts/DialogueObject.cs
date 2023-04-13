@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Dialogue/DialogueObject")]
-public class DialogueObject : ScriptableObject
+[System.Serializable]
+public class DialogueObject
 {
-    [SerializeField] [TextArea] private string[] dialogue;
+    [SerializeField] private string speakerName;
+    [SerializeField] [TextArea] private string dialogue;
+    [SerializeField] private Sprite characterSprite;
 
-    public string[] Dialogue => dialogue;
+    public string SpeakerName => speakerName;
+    public string Dialogue => dialogue;
+    public Sprite CharacterSprite => characterSprite;
 }

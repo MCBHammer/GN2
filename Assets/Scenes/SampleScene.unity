@@ -1291,6 +1291,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueBox: {fileID: 2053641223}
   textLabel: {fileID: 454925495}
+  nameLabel: {fileID: 0}
+  characterSprite: {fileID: 0}
 --- !u!114 &1173037902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1510,7 +1512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01a6b8cce49a73458a30a72a52871dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueObject: {fileID: 11400000, guid: 108117b33c0907e43910e3b46d396dd3, type: 2}
+  dialogueList: {fileID: 11400000, guid: 108117b33c0907e43910e3b46d396dd3, type: 2}
 --- !u!1 &1653695842
 GameObject:
   m_ObjectHideFlags: 0

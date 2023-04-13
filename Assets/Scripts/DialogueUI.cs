@@ -24,16 +24,18 @@ public class DialogueUI : MonoBehaviour
         CloseDialogueBox();
     }
 
-    public void ShowDialogue(DialogueObject dialogueObject)
+    public void ShowDialogue(DialogueList dialogueList)
     {
         isOpen = true;
         dialogueBox.SetActive(true);
-        StartCoroutine(StepThroughDialogue(dialogueObject));
+        StartCoroutine(StepThroughDialogue(dialogueList));
     }
 
-    private IEnumerator StepThroughDialogue(DialogueObject dialogueObject)
+    
+    private IEnumerator StepThroughDialogue(DialogueList dialogueList)
     {
-        foreach(string dialogue in dialogueObject.Dialogue)
+        /*
+        foreach(string dialogue in dialogueList.Dialogue)
         {
             yield return RunTypingEffect(dialogue);
 
@@ -43,6 +45,8 @@ public class DialogueUI : MonoBehaviour
         }
 
         CloseDialogueBox();
+        */
+        yield return null;
     }
 
     private IEnumerator RunTypingEffect(string dialogue)

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    [SerializeField] private DialogueObject dialogueObject;
+    [SerializeField] private DialogueList dialogueList;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && other.TryGetComponent(out PlayerData player))
         {
-            player.DialogueUI.ShowDialogue(dialogueObject);
+            player.DialogueUI.ShowDialogue(dialogueList);
             this.gameObject.SetActive(false);
         }
     }
