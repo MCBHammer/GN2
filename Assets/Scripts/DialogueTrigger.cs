@@ -10,7 +10,8 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player") && other.TryGetComponent(out PlayerData player))
         {
-            player.DialogueUI.ShowDialogue(dialogueList);
+            player.DialogueUI.TriggeredDialogue(dialogueList);
+            player.DialogueUI.ShowDialogue();
             this.gameObject.SetActive(false);
         }
     }
