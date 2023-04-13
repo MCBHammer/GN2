@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private CapsuleCollider2D coll;
+    private Collider2D coll;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpStrength = 10f;
     [SerializeField] private float bounceStrength = 6f;
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<CapsuleCollider2D>();
+        coll = GetComponent<Collider2D>();
         currentMoveSpeed = moveSpeed;
     }
 
