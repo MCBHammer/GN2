@@ -10,6 +10,7 @@ public class DialogueUI : MonoBehaviour
     [SerializeField] private TMP_Text textLabel;
     [SerializeField] private TMP_Text nameLabel;
     [SerializeField] private Image characterSprite;
+    [SerializeField] private Slider timeSlider;
     
     public bool isOpen { get; private set; }
 
@@ -17,6 +18,11 @@ public class DialogueUI : MonoBehaviour
 
     private DialogueList dialogueList;
     private Queue<DialogueObject> dialogueQueue = new Queue<DialogueObject>();
+
+    private float timeElapsed = 0;
+    private float timeMaximum = 5f;
+    private bool dialogueAdvance = false;
+    private bool readyToAdvance = false;
 
     private void Awake()
     {
@@ -50,6 +56,9 @@ public class DialogueUI : MonoBehaviour
 
         while(dialogueQueue.Count > 0)
         {
+            timeElapsed = 0;
+            dialogueAdvance = false;
+
             DialogueObject item = dialogueQueue.Dequeue();
             nameLabel.text = item.SpeakerName;
             if(characterSprite != null)
@@ -60,7 +69,14 @@ public class DialogueUI : MonoBehaviour
             textLabel.text = item.Dialogue;
 
             yield return null;
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.LeftControl));
+            //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.LeftControl));
+            timeMaximum = item.DialogueTime;
+            readyToAdvance = true;
+            while (!dialogueAdvance)
+            {
+                yield return null;
+            }
+            timeElapsed = 0;
         } 
         
         CloseDialogueBox();
@@ -90,6 +106,27 @@ public class DialogueUI : MonoBehaviour
                 typeWriterEffect.Stop();
             }
         }
+    }
+
+    private void Update()
+    {
+        if (readyToAdvance)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                dialogueAdvance = true;
+                readyToAdvance = false;
+            }
+
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed > timeMaximum)
+            {
+                dialogueAdvance = true;
+                readyToAdvance = false;
+            }
+        }
+
+        timeSlider.value = timeElapsed / timeMaximum;
     }
 
     private void CloseDialogueBox()

@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallMultiplier: 2
-  lowJumpMultiplier: 2
+  lowJumpMultiplier: 4
 --- !u!114 &2769530821444415086
 MonoBehaviour:
   m_ObjectHideFlags: 0
