@@ -133,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Enemy") && this.gameObject.TryGetComponent(out PlayerData player))
+        if (other.gameObject.CompareTag("Hazard") && this.gameObject.TryGetComponent(out PlayerData player))
         {
             if (IsStomping())
             {
