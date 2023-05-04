@@ -24,7 +24,9 @@ public class PlayerMovement : MonoBehaviour
     private float wallJumpDuration = 0.25f;
 
     [SerializeField] private LayerMask jumpableGround;
-    [SerializeField] private LayerMask stompableObjects; 
+    [SerializeField] private LayerMask stompableObjects;
+
+    [SerializeField] private GameObject playerArt;
 
     // Start is called before the first frame update
     void Awake()
@@ -77,6 +79,15 @@ public class PlayerMovement : MonoBehaviour
 
         WallSlide(dirX);
         WallJump(dirX);
+
+        if(dirX > 0)
+        {
+            playerArt.transform.localScale = new Vector3(1, 1, 1);
+        }
+        if(dirX < 0)
+        {
+            playerArt.transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 
     private void WallSlide(float horizontal)
