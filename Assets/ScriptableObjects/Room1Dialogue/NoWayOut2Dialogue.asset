@@ -16,9 +16,9 @@ MonoBehaviour:
   - speakerName: Ramp
     dialogue: No use trying to get back out this way.
     characterSprite: {fileID: 21300000, guid: 91c7737d66823a543a3a6fd5133c0a5c, type: 3}
-    dialogueTime: 3
+    dialogueTime: 2
   - speakerName: Ramp
     dialogue: "I\u2019ll just keep an eye out for another way out later!"
     characterSprite: {fileID: 21300000, guid: 91c7737d66823a543a3a6fd5133c0a5c, type: 3}
-    dialogueTime: 4
+    dialogueTime: 2
   nextPanelName: 

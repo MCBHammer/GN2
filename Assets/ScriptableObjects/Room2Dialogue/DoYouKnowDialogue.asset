@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72d69bf6ca40eb049b67513935fca6e7, type: 3}
-  m_Name: BottomDialogue
+  m_Name: DoYouKnowDialogue
   m_EditorClassIdentifier: 
   Dialogue:
   - speakerName: Johnny
-    dialogue: Ramp! Are you okay?
+    dialogue: "Do you actually know what you\u2019re looking for here?"
     characterSprite: {fileID: 21300000, guid: 8f84591aac0f78548a9ca621b7ed2065, type: 3}
     dialogueTime: 2
   - speakerName: Ramp
-    dialogue: Of course I am Johnny! A fall like this nothing!
+    dialogue: Not really, I just saw something moving and started chasing.
     characterSprite: {fileID: 21300000, guid: 91c7737d66823a543a3a6fd5133c0a5c, type: 3}
     dialogueTime: 3
   - speakerName: Johnny
-    dialogue: You really are something else huh?
+    dialogue: "On a stranded planet? Really? Just\u2026 don\u2019t get in too much
+      trouble."
     characterSprite: {fileID: 21300000, guid: 8f84591aac0f78548a9ca621b7ed2065, type: 3}
-    dialogueTime: 2
+    dialogueTime: 3
   nextPanelName: 

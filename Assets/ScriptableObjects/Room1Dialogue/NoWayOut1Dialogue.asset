@@ -16,9 +16,9 @@ MonoBehaviour:
   - speakerName: Ramp
     dialogue: "I really can\u2019t get back out this way, can I?"
     characterSprite: {fileID: 21300000, guid: 91c7737d66823a543a3a6fd5133c0a5c, type: 3}
-    dialogueTime: 3
+    dialogueTime: 2
   - speakerName: Ramp
     dialogue: "That\u2019s okay, I\u2019m sure I\u2019ll find an exit on the way."
     characterSprite: {fileID: 21300000, guid: 91c7737d66823a543a3a6fd5133c0a5c, type: 3}
-    dialogueTime: 4
+    dialogueTime: 2
   nextPanelName: 
